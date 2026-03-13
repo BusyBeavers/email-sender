@@ -10,9 +10,6 @@ router = APIRouter(prefix="/email", tags=["email"])
 
 @router.post("/send", response_model=EmailResponse)
 def send_email_now(request: EmailRequest):
-    """
-    Sends an email immediately.
-    """
     try:
         result = send_email(
             to=request.to,

@@ -9,28 +9,20 @@ logger = logging.getLogger(__name__)
 jobstores = {
     "default": MemoryJobStore()
 }
- 
+
 scheduler = BackgroundScheduler(jobstores=jobstores)
- 
  
 def start_scheduler():
     if not scheduler.running:
         scheduler.start()
         logger.info("Scheduler started.")
  
- 
 def shutdown_scheduler():
     if scheduler.running:
         scheduler.shutdown()
         logger.info("Scheduler shut down.")
  
- 
 def schedule_email(to: str, subject: str, body: str, send_at: datetime) -> str:
-    """
-    Schedules an email to be sent at a specific future datetime.
-    Returns the job ID.
-    Does not log recipient or body.
-    """
     job = scheduler.add_job(
         send_email,
         trigger="date",

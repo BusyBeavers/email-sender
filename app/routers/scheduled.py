@@ -8,12 +8,8 @@ logger = logging.getLogger(__name__)
 
 router = APIRouter(prefix="/email", tags=["scheduled email"])
 
-
 @router.post("/schedule", response_model=ScheduledEmailResponse)
 def schedule_email_endpoint(request: ScheduledEmailRequest):
-    """
-    Schedules an email to be sent at a future datetime.
-    """
     if not is_future_datetime(request.send_at):
         raise HTTPException(
             status_code=400,
