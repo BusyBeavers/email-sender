@@ -1,5 +1,6 @@
 # Email Sender Microservice
 Uses the Resend API to send and schedule emails and FastAPI for docs page.
+Runs locally.
 
 Requires a Resend account to test emails. [Sign up here](https://resend.com/signup)
 
